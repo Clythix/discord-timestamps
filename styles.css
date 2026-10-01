@@ -1,0 +1,250 @@
+:root {
+    --sky-blue: #5b92e5;
+    --panel-bg: #fffbf0;
+    --border-dark: #1f1f1f;
+    --grass-green: #58a032;
+    --dirt-brown: #7b5133;
+    --accent-green: #4ade80;
+    --box-shadow: 6px 6px 0px #1f1f1f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+body {
+    background-color: var(--sky-blue);
+    background-image: linear-gradient(180deg, #4a80df 0%, #76abff 100%);
+    color: var(--border-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 4px solid var(--border-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+}
+
+.brand-container {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pixel-box {
+    color: var(--grass-green);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--border-dark);
+    font-size: 1.1rem;
+    padding: 4px 12px;
+    background-color: #f3f4f6;
+    border: 2px solid var(--border-dark);
+    box-shadow: 2px 2px 0px var(--border-dark);
+    transition: background-color 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    display: inline-block;
+}
+
+.nav-links a:hover {
+    background-color: #e5e7eb;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--border-dark);
+}
+
+.hero-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+.hero-title-box {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.hero-title-box h1 {
+    font-size: 1.9rem;
+    color: #ffffff;
+    text-shadow: 3px 3px 0px var(--border-dark);
+    margin-bottom: 0.2rem;
+}
+
+.hero-title-box p {
+    font-size: 1.1rem;
+    color: #e2e8f0;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+.minecraft-panel {
+    background-color: var(--panel-bg);
+    border: 4px solid var(--border-dark);
+    border-radius: 4px;
+    padding: 1.5rem 2rem;
+    box-shadow: var(--box-shadow);
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.section-title {
+    font-size: 1rem;
+    color: #4b5563;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    border-bottom: 2px dashed #d1d5db;
+    padding-bottom: 0.2rem;
+}
+
+.form-group {
+    margin-bottom: 0.9rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+    color: #1f2937;
+}
+
+.interactive-field {
+    width: 100%;
+    padding: 0.45rem 0.65rem;
+    background-color: #ffffff;
+    border: 3px solid var(--border-dark);
+    font-size: 1.3rem;
+    color: var(--border-dark);
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.interactive-field::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.7;
+    filter: drop-shadow(1px 1px 0px #000);
+}
+
+.interactive-field::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+.interactive-field:focus {
+    border-color: #2563eb;
+    background-color: #fffefc;
+}
+
+.display-only {
+    width: 100%;
+    padding: 0.45rem 0.65rem;
+    background-color: #e5e7eb;
+    border: 3px dashed #6b7280;
+    font-size: 1.3rem;
+    color: #374151;
+    border-radius: 2px;
+    user-select: all;
+}
+
+.code-output {
+    background-color: #1f1f1f !important;
+    border: 3px solid var(--border-dark) !important;
+    color: var(--accent-green) !important;
+    font-family: monospace;
+}
+
+.button-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.4rem;
+}
+
+.mc-button {
+    flex: 1;
+    padding: 0.6rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: 3px solid var(--border-dark);
+    box-shadow: 3px 3px 0px var(--border-dark);
+    transition: background-color 0.1s ease;
+}
+
+.mc-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px var(--border-dark);
+}
+
+.btn-green {
+    background-color: #4ade80;
+    color: #064e3b;
+}
+
+.btn-green:hover {
+    background-color: #22c55e;
+}
+
+.btn-gray {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-gray:hover {
+    background-color: #9ca3af;
+    color: #ffffff;
+}
+
+.site-footer {
+    width: 100%;
+}
+
+.grass-strip {
+    height: 14px;
+    background-color: var(--grass-green);
+    border-top: 4px solid var(--border-dark);
+    border-bottom: 4px solid var(--border-dark);
+}
+
+.footer-content {
+    background-color: var(--dirt-brown);
+    color: #ffffff;
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 1.2rem;
+    border-bottom: 4px solid var(--border-dark);
+}
+
+@media (max-width: 768px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .hero-section {
+        max-width: 600px;
+    }
+    .minecraft-panel {
+        padding: 1.25rem;
+    }
+}
