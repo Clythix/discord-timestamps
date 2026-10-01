@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Timestamp Generator — Minecraft Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="brand-container">
+            <span class="pixel-box">■</span>
+            <span class="brand-title">CLYTHIX TOOLS</span>
+        </div>
+        <nav class="nav-links">
+            <a href="https://github.com/Clythix" target="_blank">GitHub</a>
+        </nav>
+    </header>
+
+    <main class="hero-section">
+        <div class="content-wrapper">
+            <div class="hero-title-box">
+                <h1>DISCORD TIMESTAMP GENERATOR</h1>
+                <p>Generate dynamic timestamps instantly for your server messages.</p>
+            </div>
+
+            <div class="minecraft-panel">
+                <div class="main-grid">
+                    <!-- LEFT COLUMN: INPUT CONTROLS -->
+                    <div class="panel-column">
+                        <div class="section-title">1. SET DATE & TIME</div>
+                        
+                        <div class="form-group">
+                            <label for="d">TARGET DATE</label>
+                            <input type="date" id="d" class="mc-input interactive-field">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hm">TARGET TIME</label>
+                            <input type="time" id="hm" class="mc-input interactive-field">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t">FORMAT STYLE</label>
+                            <select id="t" class="mc-select interactive-field">
+                                <option value="t">Short Time (16:20)</option>
+                                <option value="T">Long Time (16:20:30)</option>
+                                <option value="d">Short Date (01/10/2026)</option>
+                                <option value="D">Long Date (1 October 2026)</option>
+                                <option value="f">Short Date/Time</option>
+                                <option value="F">Full Date with Day of Week</option>
+                                <option value="R" selected>Relative (2 hours ago)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: RESULTS & ACTIONS -->
+                    <div class="panel-column">
+                        <div class="section-title">2. GET RESULTS</div>
+
+                        <div class="form-group">
+                            <label>LIVE PREVIEW DISPLAY</label>
+                            <div id="preview" class="mc-output-box display-only">Loading...</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>GENERATED DISCORD CODE</label>
+                            <input type="text" readonly id="code" class="mc-output-box display-only code-output" title="Copy output below">
+                        </div>
+
+                        <div class="button-row">
+                            <button class="mc-button btn-green" id="copy">COPY</button>
+                            <button class="mc-button btn-gray" id="current">RESET</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="grass-strip"></div>
+        <div class="footer-content">
+            <p>&copy; <span id="currentYear"></span> Clythix</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
