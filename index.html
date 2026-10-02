@@ -1,93 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord Timestamp Generator — Minecraft Edition</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discord Timestamp Generator — pick a time, copy the code.">
+<title>Discord Timestamp Generator</title>
+<link rel="icon" href="logo.png">
+<script>
+/* apply saved theme before first paint */
+(function(){try{var t=localStorage.getItem("dtg-theme");
+if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="brand-container">
-            <span class="pixel-box">■</span>
-            <span class="brand-title">CLYTHIX TOOLS</span>
-        </div>
-        <nav class="nav-links">
-            <a href="https://github.com/Clythix" target="_blank">GitHub</a>
-        </nav>
-    </header>
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#"><span class="tile" aria-hidden="true"></span>DISCORD TIMESTAMP GENERATOR</a>
+    <div class="theme-switch" role="group" aria-label="Color theme">
+      <button type="button" data-set-theme="dark" class="active">DARK</button>
+      <button type="button" data-set-theme="light">LIGHT</button>
+    </div>
+  </div>
+</nav>
 
-    <main class="hero-section">
-        <div class="content-wrapper">
-            <div class="hero-title-box">
-                <h1>DISCORD TIMESTAMP GENERATOR</h1>
-                <p>Generate dynamic timestamps instantly for your server messages.</p>
+<header class="wrap">
+  <h1>DISCORD <span class="g">TIMESTAMP</span> GENERATOR</h1>
+  <p class="tagline">Build a dynamic date-time tag for your Discord messages.
+    Pick your <b>local time</b> below and Discord shows every viewer the time in
+    <b>their own timezone</b>.</p>
+</header>
+
+<div class="horizon" aria-hidden="true">
+  <svg preserveAspectRatio="none" shape-rendering="crispEdges" viewBox="0 0 1440 48">
+    <path d="M0 20 H72 V10 H180 V20 H312 V5 H420 V17 H540 V26 H660 V10 H780 V20 H900 V5 H1020 V17 H1140 V26 H1260 V10 H1368 V20 H1440 V48 H0 Z" fill="#6fb33f"/>
+    <path d="M0 20 H72 V10 H180 V20 H312 V5 H420 V17 H540 V26 H660 V10 H780 V20 H900 V5 H1020 V17 H1140 V26 H1260 V10 H1368 V20 H1440 V34 H0 Z" fill="#8cd05a" opacity="0.5"/>
+    <rect fill="#8a5a3b" height="14" width="1440" x="0" y="34"/>
+  </svg>
+</div>
+
+<main class="wrap">
+
+  <div class="grid">
+    <!-- ===== LEFT: PICKER ===== -->
+    <section class="panel">
+      <h2>Pick a time</h2>
+
+      <div class="spin-row" id="dateSpin"></div>
+      <div class="spin-row" id="timeSpin" style="margin-top:.9rem"></div>
+      <p class="spin-note">Drag, scroll, use the arrows or your keyboard. Your local timezone.</p>
+
+      <label class="field-label" id="fmt-label">Format</label>
+      <fieldset class="chips" role="radiogroup" aria-labelledby="fmt-label">
+        <label class="chip"><input type="radio" name="t" value="t"><span>SHORT TIME</span></label>
+        <label class="chip"><input type="radio" name="t" value="T"><span>LONG TIME</span></label>
+        <label class="chip"><input type="radio" name="t" value="d"><span>SHORT DATE</span></label>
+        <label class="chip"><input type="radio" name="t" value="D"><span>LONG DATE</span></label>
+        <label class="chip"><input type="radio" name="t" value="f"><span>DATE + TIME</span></label>
+        <label class="chip"><input type="radio" name="t" value="F"><span>FULL DATE</span></label>
+        <label class="chip"><input type="radio" name="t" value="R" checked><span>RELATIVE</span></label>
+      </fieldset>
+
+      <label class="field-label">Quick picks</label>
+      <div class="presets">
+        <button class="mcbtn gray" data-preset="now" type="button">NOW</button>
+        <button class="mcbtn gray" data-preset="1h" type="button">+1 HOUR</button>
+        <button class="mcbtn gray" data-preset="tomorrow" type="button">TOMORROW</button>
+        <button class="mcbtn gray" data-preset="newyear" type="button">NEW YEAR</button>
+      </div>
+    </section>
+
+    <!-- ===== RIGHT: PREVIEW + OUTPUT ===== -->
+    <section class="panel">
+      <h2>Discord preview</h2>
+
+      <div class="chat">
+        <div class="msg">
+          <div class="avatar"></div>
+          <div>
+            <div>
+              <span class="msg-name">CraftBot</span><span class="bot">BOT</span>
+              <span class="msg-time">Today at 4:20 PM</span>
             </div>
-
-            <div class="minecraft-panel">
-                <div class="main-grid">
-                    <!-- LEFT COLUMN: INPUT CONTROLS -->
-                    <div class="panel-column">
-                        <div class="section-title">1. SET DATE & TIME</div>
-                        
-                        <div class="form-group">
-                            <label for="d">TARGET DATE</label>
-                            <input type="date" id="d" class="mc-input interactive-field">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="hm">TARGET TIME</label>
-                            <input type="time" id="hm" class="mc-input interactive-field">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="t">FORMAT STYLE</label>
-                            <select id="t" class="mc-select interactive-field">
-                                <option value="t">Short Time (16:20)</option>
-                                <option value="T">Long Time (16:20:30)</option>
-                                <option value="d">Short Date (01/10/2026)</option>
-                                <option value="D">Long Date (1 October 2026)</option>
-                                <option value="f">Short Date/Time</option>
-                                <option value="F">Full Date with Day of Week</option>
-                                <option value="R" selected>Relative (2 hours ago)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT COLUMN: RESULTS & ACTIONS -->
-                    <div class="panel-column">
-                        <div class="section-title">2. GET RESULTS</div>
-
-                        <div class="form-group">
-                            <label>LIVE PREVIEW DISPLAY</label>
-                            <div id="preview" class="mc-output-box display-only">Loading...</div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>GENERATED DISCORD CODE</label>
-                            <input type="text" readonly id="code" class="mc-output-box display-only code-output" title="Copy output below">
-                        </div>
-
-                        <div class="button-row">
-                            <button class="mc-button btn-green" id="copy">COPY</button>
-                            <button class="mc-button btn-gray" id="current">RESET</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="msg-text">Event starts <span class="pill" id="preview">in 5 minutes</span> — don't be late!</div>
+            <div class="msg-text" style="margin-top:.4rem">Raw code: <code id="inlineCode">&lt;t:0:R&gt;</code></div>
+          </div>
         </div>
-    </main>
+      </div>
 
-    <footer class="site-footer">
-        <div class="grass-strip"></div>
-        <div class="footer-content">
-            <p>&copy; <span id="currentYear"></span> Clythix</p>
-        </div>
-    </footer>
+      <div class="output-row">
+        <label for="code">Your code</label>
+        <input type="text" readonly id="code" title="Click Copy — or select and press Ctrl/Cmd+C">
+      </div>
 
-    <script src="script.js"></script>
+      <div class="actions">
+        <button class="mcbtn" id="copy" type="button">COPY CODE</button>
+        <button class="mcbtn gold" id="current" type="button">RESET TO NOW</button>
+      </div>
+      <p class="copied-note" id="copiedNote" role="status"></p>
+
+      <p class="hint">Paste it anywhere in a Discord message. The preview is an
+        approximation — Discord renders it in each user's language and timezone.</p>
+    </section>
+  </div>
+
+  <!-- ===== ALL FORMATS ===== -->
+  <section class="panel">
+    <h2>All formats</h2>
+    <div class="fmt-grid" id="fmtGrid"></div>
+  </section>
+
+  <!-- ===== HOW TO ===== -->
+  <section class="panel">
+    <h2>How to use</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span>
+        <p><b>Pick your moment.</b> Use the spinners or a quick pick button.</p></div>
+      <div class="step"><span class="n">2</span>
+        <p><b>Choose a format.</b> Relative counts down live.</p></div>
+      <div class="step"><span class="n">3</span>
+        <p><b>Copy and paste</b> the code into any Discord message.</p></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-scene-wrap">
+    <img class="footer-scene" src="footer-scene.png" alt=""
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block';this.onerror=null;">
+    <svg class="footer-scene-svg" viewBox="0 0 200 48" shape-rendering="crispEdges" aria-hidden="true">
+      <rect x="16" y="22" width="168" height="6" fill="#7dbe3c"/>
+      <rect x="16" y="28" width="168" height="14" fill="#8a5a3b"/>
+      <rect x="40" y="30" width="14" height="4" fill="#6b4429"/>
+      <rect x="120" y="32" width="12" height="4" fill="#9c6b47"/>
+      <rect x="150" y="8" width="16" height="16" fill="#4d9e4d"/>
+      <rect x="152" y="12" width="4" height="4" fill="#101d10"/>
+      <rect x="160" y="12" width="4" height="4" fill="#101d10"/>
+      <rect x="156" y="16" width="4" height="4" fill="#101d10"/>
+      <rect x="154" y="20" width="3" height="4" fill="#101d10"/>
+      <rect x="159" y="20" width="3" height="4" fill="#101d10"/>
+      <rect x="64" y="10" width="10" height="10" fill="#b5876b"/>
+      <rect x="64" y="10" width="10" height="3" fill="#3b2a1c"/>
+      <rect x="65" y="22" width="8" height="6" fill="#2ea3a8"/>
+    </svg>
+  </div>
+  <div class="footer-body">
+    <div class="footer-icons">
+      <a class="f-icon" href="#" aria-label="Home" title="Home">
+        <img src="logo.png" alt=""
+             onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 16 16&quot; shape-rendering=&quot;crispEdges&quot;&gt;&lt;rect x=&quot;0&quot; y=&quot;8&quot; width=&quot;16&quot; height=&quot;8&quot; fill=&quot;#8a5a3b&quot;/&gt;&lt;rect x=&quot;0&quot; y=&quot;4&quot; width=&quot;16&quot; height=&quot;4&quot; fill=&quot;#5e9e2f&quot;/&gt;&lt;rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;16&quot; height=&quot;4&quot; fill=&quot;#7dbe3c&quot;/&gt;&lt;/svg&gt;';this.onerror=null;">
+      </a>
+      <a class="f-icon" href="https://github.com/Clythix/discord-timestamps" target="_blank" rel="noopener"
+         aria-label="GitHub repository" title="GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      </a>
+    </div>
+    <a class="footer-link" href="https://github.com/Clythix/discord-timestamps" target="_blank" rel="noopener">github.com/Clythix/discord-timestamps</a>
+    <p class="footer-sub">Not affiliated with Mojang, Minecraft, or Discord</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
