@@ -12,15 +12,14 @@
 
 /* ============ THEME TOKENS ============ */
 :root{
-  /* dark = discord dark x minecraft (flat, no gradient, no grid) */
   --font:'Minecraft',monospace;
 
   --bg:#2b2d31;
   --panel:#313338;
   --panel-2:#2b2d31;
   --inset:#1e1f22;
-  --edge-l:#43444b;          /* bevel light edge */
-  --edge-d:#1e1f22;          /* bevel dark edge  */
+  --edge-l:#43444b;          
+  --edge-d:#1e1f22;          
 
   --text:#e3e5e8;
   --muted:#949ba4;
@@ -87,7 +86,6 @@
   --sb-thumb:#43444b;
 }
 html[data-theme="light"]{
-  /* light = simply capes polish (same fonts, same sizes) */
   --bg:#5fb0ee;
   --panel:#ffffff;
   --panel-2:#ffffff;
