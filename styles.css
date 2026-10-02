@@ -1,12 +1,12 @@
 /* ============ MINECRAFT FONT (self-hosted) ============ */
 @font-face{
   font-family:'Minecraft';
-  src:url('Minecraft.ttf') format('truetype');
+  src:url('Minecraft.ttf?v=3') format('truetype');
   font-weight:400;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:'Minecraft';
-  src:url('3 Minecraft-Bold.otf') format('opentype');
+  src:url('Minecraft-Bold.otf?v=3') format('opentype');
   font-weight:700;font-style:normal;font-display:swap;
 }
 
@@ -192,7 +192,11 @@ nav.topbar{
   font-weight:700;font-size:14px;letter-spacing:1px;text-decoration:none;min-width:0}
 .brand .tile{
   width:28px;height:28px;flex:none;border-radius:6px;overflow:hidden;
-  background:#313338;
+  background:
+    linear-gradient(#7dbe3c 0 0) 0 0/14px 7px,
+    linear-gradient(#5e9e2f 0 0) 14px 0/14px 7px,
+    linear-gradient(#6b4a2b 0 0) 0 7px/14px 14px,
+    linear-gradient(#5c3f25 0 0) 14px 7px/14px 14px;
   border:2px solid #0c0d0e;
   display:grid;place-items:center;
 }
@@ -311,10 +315,9 @@ main{padding:2rem 0 3rem;display:grid;gap:1.25rem}
   text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem}
 #code{width:100%;font-family:var(--font);font-size:18px;color:var(--field-text);
   background:var(--field-bg);border:2px solid var(--bo-in);
-  border-radius:var(--b-radius);padding:.45rem .7rem;outline:none}
+  border-radius:var(--b-radius);padding:.45rem .7rem;outline:none;cursor:pointer}
 #code:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.75rem}
-.copied-note{font-size:12px;color:var(--accent);min-height:1.4em;margin-top:.55rem;font-weight:700}
 .hint{font-size:12px;color:var(--muted);margin-top:.7rem}
 
 /* ============ ALL FORMATS ============ */
@@ -394,10 +397,22 @@ footer{margin-top:auto}
 .footer-meta-text{font-size:13px;font-weight:700;color:var(--footer-text)}
 .footer-meta-text a{color:var(--footer-link);text-decoration:none}
 .footer-meta-text a:hover{text-decoration:underline}
-.footer-meta-text a.gold-link{color:var(--gold)}
 .footer-link{color:var(--footer-link);font-size:13px;font-weight:700;text-decoration:none}
 .footer-link:hover{text-decoration:underline}
 .footer-sub{color:var(--footer-text);font-size:12px;margin-top:.35rem}
+
+/* ============ TOAST (copy popup) ============ */
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);
+  background:var(--accent);color:#fff;
+  font-size:12px;font-weight:700;letter-spacing:1px;
+  padding:.7rem 1.2rem;border-radius:var(--b-radius);
+  border:2px solid var(--bo-solid);box-shadow:0 4px 0 var(--bo-solid);
+  opacity:0;pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;
+  z-index:1000;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:860px){
