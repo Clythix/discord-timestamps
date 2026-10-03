@@ -65,7 +65,7 @@ function partsAt(instantMs, zone) {
   return { year: v.year, month: v.month, day: v.day, hour: v.hour, minute: v.minute, second: v.second };
 }
 
-/* Wall-clock fields that `date` shows in the given zone. */
+/* Wall-clock fields currently shown for `date` in the given zone. */
 export function zonedPartsAt(date, selectedZone) {
   return partsAt(date.getTime(), effectiveTimeZone(selectedZone));
 }
@@ -92,8 +92,7 @@ function sameWallTime(a, b) {
 }
 
 /* Convert wall-clock fields in a zone to a real instant (UTC ms).
-   Ambiguous (fall-back) times -> earlier instant.
-   Nonexistent (spring-forward) times -> throws RangeError. */
+   Ambiguous (fall-back) times -> earlier instant. Nonexistent (spring-forward) -> throws. */
 export function wallTimeToEpochMs(fields, selectedZone) {
   const zone = effectiveTimeZone(selectedZone);
   const wallMs = wallFieldsToUtcMs(fields);
