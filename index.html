@@ -34,7 +34,7 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 </script>
 <link rel="stylesheet" href="css/base.css?v=1">
 <link rel="stylesheet" href="css/layout.css?v=1">
-<link rel="stylesheet" href="css/components.css?v=1">
+<link rel="stylesheet" href="css/components.css?v=2">
 </head>
 <body>
 
@@ -78,7 +78,11 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 
       <div class="spin-row" id="dateSpin"></div>
       <div class="spin-row" id="timeSpin" style="margin-top:.9rem"></div>
-      <p class="spin-note">Drag, scroll, use the arrows or your keyboard. Your local timezone.</p>
+      <p class="spin-note">Drag, scroll, use the arrows or your keyboard.</p>
+
+      <label class="field-label" for="timeZone">Time zone</label>
+      <select id="timeZone" class="tz-select" aria-label="Time zone"></select>
+      <p class="tz-error" id="tzError" hidden></p>
 
       <label class="field-label" id="fmt-label">Format</label>
       <fieldset class="chips" role="radiogroup" aria-labelledby="fmt-label">
