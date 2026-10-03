@@ -1,0 +1,22 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor folders
+.vscode/
+.idea/
+
+# Node tooling (dev-only: lint & test)
+node_modules/
+*.log
+package-lock.json
+
+# Env files — never commit secrets
+.env
+.env.*
+
+# Local artifacts
+dist/
+coverage/
+.cloudflare/
