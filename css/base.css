@@ -1,0 +1,179 @@
+/* ============ MINECRAFT FONT (self-hosted) ============ */
+@font-face{
+  font-family:'Minecraft';
+  src:url('../fonts/Minecraft.ttf') format('truetype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Minecraft';
+  src:url('../fonts/Minecraft-Bold.otf') format('opentype');
+  font-weight:700;font-style:normal;font-display:swap;
+}
+
+/* ============ THEME TOKENS ============ */
+:root{
+  --font:'Minecraft',monospace;
+
+  --bg:#2b2d31;
+  --panel:#313338;
+  --panel-2:#2b2d31;
+  --inset:#1e1f22;
+  --edge-l:#43444b;
+  --edge-d:#1e1f22;
+
+  --text:#e3e5e8;
+  --muted:#949ba4;
+
+  --accent:#7dbe3c;
+  --accent-dark:#5e9e2f;
+  --accent-deep:#3c6b28;
+  --gold:#ffc857;
+  --label:#ffc857;
+
+  --radius:6px;
+  --b-radius:8px;
+  --bo-out:var(--edge-l) var(--edge-d) var(--edge-d) var(--edge-l);
+  --bo-in:var(--edge-d) var(--edge-l) var(--edge-l) var(--edge-d);
+  --bo-solid:var(--edge-d);
+  --card-shadow:none;
+  --card-shadow-hover:none;
+
+  --btn-bg:#5e9e2f;
+  --btn-text:#fff;
+  --btn-bo:#7dbe3c #3c6b28 #3c6b28 #7dbe3c;
+  --btn2-bg:#43444b;
+  --btn2-text:#fff;
+  --btn2-bo:#565861 #1e1f22 #1e1f22 #565861;
+  --btn3-bg:#b8860b;
+  --btn3-text:#fff;
+  --btn3-bo:#ffc857 #7a5a08 #7a5a08 #ffc857;
+
+  --chip-bg:#43444b;
+  --chip-text:#e3e5e8;
+  --chip-bo:#565861 #1e1f22 #1e1f22 #565861;
+  --chip-on-bg:#5e9e2f;
+  --chip-on-bo:#7dbe3c #3c6b28 #3c6b28 #7dbe3c;
+
+  --field-bg:#1e1f22;
+  --field-text:#7dbe3c;
+  --spin-btn-bg:#383b40;
+
+  --nav-bg:#1e1f22;
+  --nav-shadow:#0c0d0e;
+  --nav-text:#e3e5e8;
+  --toggle-bg:#313338;
+  --toggle-border:#0c0d0e;
+  --toggle-active:#5e9e2f;
+  --toggle-active-text:#fff;
+
+  --chat-bg:#2b2d31;
+  --chat-border:#1e1f22;
+  --chat-inset:#1e1f22;
+  --chat-line:#3f4147;
+  --chat-text:#dbdee1;
+  --chat-muted:#949ba4;
+  --chat-name:#f0b232;
+  --chat-code:#57f287;
+
+  --footer-bg:#1e1f22;
+  --footer-text:#949ba4;
+  --footer-link:#8cd05a;
+  --footer-icon:#c9ccd1;
+  --footer-icon-bg:#313338;
+  --footer-icon-border:#0c0d0e;
+
+  --sb-track:#1e1f22;
+  --sb-thumb:#43444b;
+}
+html[data-theme="light"]{
+  --bg:#5fb0ee;
+  --panel:#ffffff;
+  --panel-2:#ffffff;
+  --inset:#eef0f3;
+  --edge-l:#16181d;
+  --edge-d:#16181d;
+
+  --text:#16181d;
+  --muted:#5b6472;
+
+  --accent:#4e8f2f;
+  --accent-dark:#3c6b28;
+  --accent-deep:#2f5c1c;
+  --gold:#e8a013;
+  --label:#3c6b28;
+
+  --radius:12px;
+  --b-radius:10px;
+  --bo-out:#16181d;
+  --bo-in:#16181d;
+  --bo-solid:#16181d;
+  --card-shadow:0 4px 0 #16181d;
+  --card-shadow-hover:0 6px 0 #16181d;
+
+  --btn-bg:#4e8f2f;
+  --btn-text:#fff;
+  --btn-bo:#16181d;
+  --btn2-bg:#ffffff;
+  --btn2-text:#16181d;
+  --btn2-bo:#16181d;
+  --btn3-bg:#f5b52e;
+  --btn3-text:#16181d;
+  --btn3-bo:#16181d;
+
+  --chip-bg:#ffffff;
+  --chip-text:#16181d;
+  --chip-bo:#16181d;
+  --chip-on-bg:#4e8f2f;
+  --chip-on-bo:#16181d;
+
+  --field-bg:#ffffff;
+  --field-text:#1f6b25;
+  --spin-btn-bg:#eef1f5;
+
+  --nav-bg:#4e8f2f;
+  --nav-shadow:#2f5c1c;
+  --nav-text:#ffffff;
+  --toggle-bg:#ffffff;
+  --toggle-border:#16181d;
+  --toggle-active:#4e8f2f;
+  --toggle-active-text:#fff;
+
+  --chat-bg:#ffffff;
+  --chat-border:#16181d;
+  --chat-inset:#eef0f3;
+  --chat-line:#d9dce1;
+  --chat-text:#313338;
+  --chat-muted:#6d6f78;
+  --chat-name:#b8772a;
+  --chat-code:#2d7a2d;
+
+  --footer-bg:#1e1f22;
+  --footer-text:#aeb4bd;
+  --footer-link:#8cd05a;
+  --footer-icon:#eef0f3;
+  --footer-icon-bg:#313338;
+  --footer-icon-border:#0c0d0e;
+
+  --sb-track:#cfe6fa;
+  --sb-thumb:#4e8f2f;
+}
+
+/* ============ BASE ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  font-size:15px;
+  line-height:1.6;
+  color:var(--text);
+  background:var(--bg);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--sb-track)}
+::-webkit-scrollbar-thumb{background:var(--sb-thumb);border-radius:999px}
+.wrap{width:min(1080px,100% - 2rem);margin-inline:auto}
+img{image-rendering:pixelated;pointer-events:none;-webkit-user-drag:none}
