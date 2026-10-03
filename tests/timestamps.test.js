@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  FORMATS, MONTHS, daysInMonth, toUnix, buildCode, replaceFormat, formatFor
+  FORMATS, MONTHS, daysInMonth, toUnix, buildCode, replaceFormat,
+  formatFor, wallTimeToEpochMs
 } from "../js/timestamps.js";
 
 test("all 7 Discord format keys exist", () => {
@@ -14,12 +15,12 @@ test("MONTHS has 12 three-letter entries", () => {
 });
 
 test("daysInMonth handles leap years and short months", () => {
-  assert.equal(daysInMonth(2024, 1), 29);  // leap
-  assert.equal(daysInMonth(2023, 1), 28);  // common
-  assert.equal(daysInMonth(2000, 1), 29);  // 400-year leap
-  assert.equal(daysInMonth(1900, 1), 28);  // 100-year common
-  assert.equal(daysInMonth(2026, 1), 28);  // February
-  assert.equal(daysInMonth(2026, 3), 30);  // April
+  assert.equal(daysInMonth(2024, 1), 29);
+  assert.equal(daysInMonth(2023, 1), 28);
+  assert.equal(daysInMonth(2000, 1), 29);
+  assert.equal(daysInMonth(1900, 1), 28);
+  assert.equal(daysInMonth(2026, 1), 28);
+  assert.equal(daysInMonth(2026, 3), 30);
 });
 
 test("toUnix converts milliseconds to seconds", () => {
@@ -36,7 +37,7 @@ test("buildCode builds a valid Discord tag", () => {
 test("replaceFormat swaps the style letter safely", () => {
   assert.equal(replaceFormat("<t:100:t>", "F"), "<t:100:F>");
   assert.equal(replaceFormat("<t:100:R>", "d"), "<t:100:d>");
-  assert.equal(replaceFormat("<t:100:RR>", "F"), "<t:100:RR>"); // malformed input untouched
+  assert.equal(replaceFormat("<t:100:RR>", "F"), "<t:100:RR>");
 });
 
 test("relative format uses the closest unit (en)", () => {
@@ -61,4 +62,39 @@ test("fixed date formats return non-empty strings (en)", () => {
     assert.equal(typeof formatFor(key, date, "en"), "string");
     assert.ok(formatFor(key, date, "en").length > 0);
   });
+});
+
+test("wall time in New York (winter) converts to UTC", () => {
+  const ms = wallTimeToEpochMs({ year: 2024, month: 1, day: 15, hour: 12, minute: 0, second: 0 }, "America/New_York");
+  assert.equal(ms, Date.UTC(2024, 0, 15, 17, 0, 0));
+});
+
+test("wall time in New York (summer DST) converts to UTC", () => {
+  const ms = wallTimeToEpochMs({ year: 2024, month: 7, day: 15, hour: 12, minute: 0, second: 0 }, "America/New_York");
+  assert.equal(ms, Date.UTC(2024, 6, 15, 16, 0, 0));
+});
+
+test("wall time in Kolkata keeps the 30-minute offset", () => {
+  const ms = wallTimeToEpochMs({ year: 2024, month: 1, day: 15, hour: 12, minute: 0, second: 7 }, "Asia/Kolkata");
+  assert.equal(ms, Date.UTC(2024, 0, 15, 6, 30, 7));
+});
+
+test("spring-forward nonexistent time throws", () => {
+  assert.throws(() =>
+    wallTimeToEpochMs({ year: 2024, month: 3, day: 10, hour: 2, minute: 30, second: 0 }, "America/New_York"));
+});
+
+test("fall-back ambiguous time picks the earlier instant", () => {
+  const ms = wallTimeToEpochMs({ year: 2024, month: 11, day: 3, hour: 1, minute: 30, second: 0 }, "America/New_York");
+  assert.equal(ms, Date.UTC(2024, 10, 3, 5, 30, 0));
+});
+
+test("invalid calendar date throws", () => {
+  assert.throws(() =>
+    wallTimeToEpochMs({ year: 2024, month: 2, day: 30, hour: 0, minute: 0, second: 0 }, "UTC"));
+});
+
+test("formatFor respects the requested time zone", () => {
+  const date = new Date(Date.UTC(2024, 0, 15, 12, 0, 0));
+  assert.equal(formatFor("t", date, "en-GB", "Asia/Kolkata"), "17:30");
 });
