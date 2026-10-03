@@ -1,0 +1,24 @@
+{
+  "name": "discord-timestamp-generator",
+  "version": "1.0.0",
+  "description": "Minecraft-themed Discord timestamp code generator. 100% client-side, no build step.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clythix/discord-timestamps.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/",
+    "lint": "eslint js tests eslint.config.js",
+    "format": "prettier --write \"js/**/*.js\" \"tests/**/*.js\"",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0"
+  }
+}
