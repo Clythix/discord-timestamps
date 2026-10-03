@@ -3,16 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Discord Timestamp Generator — pick a time, copy the code.">
+<meta name="description" content="Generate Discord timestamp codes in a Minecraft-themed tool. Pick a date and time, copy the code, and everyone in Discord sees the time in their own timezone.">
+<meta name="keywords" content="Discord, timestamp, generator, Minecraft, Unix time">
 <title>Discord Timestamp Generator</title>
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+
+<!-- Favicon configuration -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="shortcut icon" href="/favicon.ico">
+
+<!-- SEO / link previews (Discord, Twitter, WhatsApp...) -->
+<link rel="canonical" href="https://timestamps.clythix.com/">
+<meta name="theme-color" content="#1e1f22">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Clythix">
+<meta property="og:url" content="https://timestamps.clythix.com/">
+<meta property="og:title" content="Discord Timestamp Generator — Clythix">
+<meta property="og:description" content="Pick a date and time, copy the code, and everyone in Discord sees the moment in their own timezone. Minecraft-themed and free.">
+<meta property="og:image" content="https://timestamps.clythix.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Discord Timestamp Generator — Clythix">
+<meta name="twitter:description" content="Pick a date and time, copy the code, and everyone in Discord sees the moment in their own timezone.">
+<meta name="twitter:image" content="https://timestamps.clythix.com/assets/og-image.png">
+
 <script>
 /* apply saved theme before first paint */
 (function(){try{var t=localStorage.getItem("dtg-theme");
 if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
 </script>
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="css/base.css?v=1">
+<link rel="stylesheet" href="css/layout.css?v=1">
+<link rel="stylesheet" href="css/components.css?v=1">
 </head>
 <body>
 
@@ -20,7 +42,7 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
   <div class="topbar-inner">
     <a class="brand" href="https://timestamps.clythix.com/">
       <span class="tile" aria-hidden="true">
-        <img src="timestamps.png" alt=""
+        <img src="assets/timestamps.png" alt=""
              onerror="this.style.display='none';this.onerror=null;">
       </span>
       DISCORD TIMESTAMP GENERATOR
@@ -202,8 +224,6 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
 
 <footer>
   <div class="footer-scene-wrap">
-    <img class="footer-scene" src="footer-scene.png" alt=""
-         onerror="this.style.display='none';this.nextElementSibling.style.display='block';this.onerror=null;">
     <svg class="footer-scene-svg" viewBox="0 0 200 48" shape-rendering="crispEdges" aria-hidden="true">
       <rect x="16" y="22" width="168" height="6" fill="#7dbe3c"/>
       <rect x="16" y="28" width="168" height="14" fill="#8a5a3b"/>
@@ -223,21 +243,20 @@ if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)
   <div class="footer-body">
     <div class="footer-icons">
       <a class="f-icon" href="https://timestamps.clythix.com/" aria-label="Home" title="Home">
-        <img src="timestamps.png" alt=""
-             onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 16 16&quot; shape-rendering=&quot;crispEdges&quot;&gt;&lt;rect x=&quot;0&quot; y=&quot;8&quot; width=&quot;16&quot; height=&quot;8&quot; fill=&quot;#8a5a3b&quot;/&gt;&lt;rect x=&quot;0&quot; y=&quot;4&quot; width=&quot;16&quot; height=&quot;4&quot; fill=&quot;#5e9e2f&quot;/&gt;&lt;rect x=&quot;0&quot; y=&quot;0&quot; width=&quot;16&quot; height=&quot;4&quot; fill=&quot;#7dbe3c&quot;/&gt;&lt;/svg&gt;';this.onerror=null;">
+        <span class="grass" aria-hidden="true"></span>
       </a>
       <a class="f-icon" href="https://github.com/Clythix/discord-timestamps" target="_blank" rel="noopener"
          aria-label="GitHub repository" title="GitHub">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
       </a>
     </div>
-    <div class="footer-meta-text">© 2026 <a href="https://clythix.com/" target="_blank" rel="noopener">clythix.com</a> | <a href="https://github.com/clythix/discord-timestamps/issues/new" target="_blank" rel="noopener" title="Report a Bug">report a bug</a></div>
+    <div class="footer-meta-text">© 2026 <a href="https://clythix.com/" target="_blank" rel="noopener">clythix.com</a> | <a class="gold-link" href="https://github.com/clythix/discord-timestamps/issues/new" target="_blank" rel="noopener" title="Report a Bug">report a bug</a></div>
     <p class="footer-sub">Not affiliated with Mojang, Minecraft, or Discord</p>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js?v=3"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
